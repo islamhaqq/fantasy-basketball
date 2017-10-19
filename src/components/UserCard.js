@@ -7,3 +7,5 @@ const UserCard = ({ player }) => (
     <UserInfo fullName={player.firstName + player.lastName} />
   </li>
 )
+
+export default UserCard
