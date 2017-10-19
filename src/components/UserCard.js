@@ -3,7 +3,7 @@ import React from 'react'
 import UserInfo from './UserInfo'
 
 const UserCard = ({ player }) => (
-  <div>
+  <li>
     <UserInfo fullName={player.firstName + player.lastName} />
-  </div>
+  </li>
 )
