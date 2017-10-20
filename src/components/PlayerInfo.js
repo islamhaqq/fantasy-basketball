@@ -2,11 +2,11 @@ import React from 'react'
 
 /**
  * A presentational component that displays a basketball player's information.
- * @method UserInfo
+ * @method PlayerInfo
  * @param  {String} fullName - The player's full name.
  */
-const UserInfo = ({ fullName }) => (
+const PlayerInfo = ({ fullName }) => (
   <p>{fullName}</p>
 )
 
-export default UserInfo
+export default PlayerInfo
