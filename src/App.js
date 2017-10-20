@@ -5,6 +5,10 @@ import PlayerList from './components/PlayerList'
 
 import './App.css';
 
+/**
+ * URL of where the data can be fetched.
+ * @type {String}
+ */
 const API_ENDPOINT = 'https://demo5689530.mockable.io/public/players'
 
 class App extends Component {
