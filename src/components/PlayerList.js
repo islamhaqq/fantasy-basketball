@@ -5,9 +5,9 @@ import UserCard from './UserCard'
 const PlayerList = ({ players }) => (
   <ul>
     {
-      players.map((player, index) => (
-        <UserCard key={index} {...player} />
-      ))
+      players ? Object.keys(players).map((player, index) => (
+        <UserCard key={index} player={players[player]} />
+      )) : <p>none</p>
     }
   </ul>
 )

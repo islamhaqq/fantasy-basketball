@@ -50,7 +50,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <PlayerList />
+        <PlayerList players={this.state.players} />
       </div>
     );
   }
