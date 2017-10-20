@@ -1,12 +1,12 @@
 import React from 'react'
 
-import UserCard from './UserCard'
+import PlayerCard from './PlayerCard'
 
 const PlayerList = ({ players }) => (
   <ul>
     {
       players ? Object.keys(players).map((player, index) => (
-        <UserCard key={index} player={players[player]} />
+        <PlayerCard key={index} player={players[player]} />
       )) : <p>none</p>
     }
   </ul>
