@@ -9,25 +9,43 @@ class AddPlayersInput extends Component {
     super(props)
 
     this.state = {
-      playerEmailInput: ''
+      playerEmailInput: '',
+      players: []
     }
   }
 
   /**
    * Updates the state representing what the user enters in the input field.
    * @method updatePlayerEmailInput
-   * @param  {Object} event - The input change event.
+   * @param  {Object} event - The native DOM input change event.
    * @return {Void}
    */
   updatePlayerEmailInput = (event) => {
     this.setState({ playerEmailInput: event.target.value })
   }
 
+  /**
+   * Adds a new player to the list of players already being rendered.
+   * @method addPlayer
+   * @param  {Object} event - The native DOM click event.
+   */
+  addPlayer = (event) => {
+    this.setState(prevState => ({
+      // push a new element to the array of players
+      players: [...prevState.players, this.state.playerEmailInput],
+      // clear the input
+      playerEmailInput: ''
+    }))
+  }
+
   render () {
     return (
-      <input
-        value={this.state.playerEmailInput} onChange={this.updatePlayerEmailInput}
-      />
+      <div>
+        <input
+          value={this.state.playerEmailInput} onChange={this.updatePlayerEmailInput}
+        />
+        <button onClick={this.addPlayer}>Add Player</button>
+      </div>
     )
   }
 }
