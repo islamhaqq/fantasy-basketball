@@ -92,7 +92,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <PlayerList players={this.state.players} />
+        <PlayerList players={this.state.addedPlayers} />
         <AddPlayersInput onAddPlayer={this.addPlayer} />
       </div>
     );

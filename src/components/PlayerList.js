@@ -7,20 +7,20 @@ import NoPlayers from './NoPlayers'
  * A presentational component that simply renders a list of all the available
  * players.
  * @method PlayerList
- * @param  {Object} players - A "roster" of players.
+ * @param  {Array} players - The user's fantasy roster of players.
  */
 const PlayerList = ({ players }) => {
   // indicate the user has not added any players yet, or has deleted them all.
-  if (!players) {
+  if (players.length === 0) {
     return <NoPlayers />
   }
 
   /**
    * A PlayerCard for every player, with its respective data passed as props.
-   * @type {Object}
+   * @type {Array}
    */
-  const playerCards = Object.keys(players).map((player, index) => (
-    <PlayerCard key={index} player={players[player]} /> ))
+  const playerCards = players.map((player, index) => (
+    <PlayerCard key={index} player={player} /> ))
 
   return (
     // list out all the players and their cards
