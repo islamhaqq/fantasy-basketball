@@ -3,6 +3,7 @@ import fetch from 'isomorphic-fetch'
 
 import PlayerList from './components/PlayerList'
 import AddPlayersInput from './containers/AddPlayersInput'
+import NoPlayers from './components/NoPlayers'
 
 import './App.css';
 
@@ -51,7 +52,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <PlayerList players={this.state.players} />
+        {/* handle cases where players is undefined or null */}
+        {this.state.players ? <PlayerList players={this.state.players} /> : <NoPlayers />}
+
         <AddPlayersInput />
       </div>
     );
