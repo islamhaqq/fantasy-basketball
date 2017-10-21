@@ -1,6 +1,7 @@
 import React from 'react'
 
 import PlayerCard from './PlayerCard'
+import NoPlayers from './NoPlayers'
 
 /**
  * A presentational component that simply renders a list of all the available
@@ -9,6 +10,11 @@ import PlayerCard from './PlayerCard'
  * @param  {Object} players - A "roster" of players.
  */
 const PlayerList = ({ players }) => {
+  // handle cases where players is undefined or null
+  if (!players) {
+    return <NoPlayers />
+  }
+
   /**
    * A PlayerCard for every player, with its respective data passed as props.
    * @type {Object}
