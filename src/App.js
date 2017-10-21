@@ -33,7 +33,12 @@ class App extends Component {
        * data.
        * @type {Boolean}
        */
-      isLoading: true
+      isLoading: true,
+      /**
+       * The list of players that is being rendered in the main view.
+       * @type {Array}
+       */
+      addedPlayers: []
     }
   }
 
@@ -64,6 +69,17 @@ class App extends Component {
     }
   }
 
+  /**
+   * Adds a new player to the list of players already being rendered.
+   * @method addPlayer
+   */
+  addPlayer = (playerEmailInput) => {
+    this.setState(prevState => ({
+      // push a new element to the array of players
+      addedPlayers: [...prevState.addedPlayers, playerEmailInput]
+    }))
+  }
+
   render() {
     // indicate app is loading and resolving promises from asynchronous calls.
     if (this.state.isLoading) return <Loading />
@@ -71,7 +87,7 @@ class App extends Component {
     return (
       <div className="App">
         <PlayerList players={this.state.players} />
-        <AddPlayersInput />
+        <AddPlayersInput onAddPlayer={this.addPlayer} />
       </div>
     );
   }

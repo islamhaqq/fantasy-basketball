@@ -13,12 +13,7 @@ class AddPlayersInput extends Component {
        * What the user is typing into the input field to add players.
        * @type {String}
        */
-      playerEmailInput: '',
-      /**
-       * The list of players that is being rendered in the main view.
-       * @type {Array}
-       */
-      players: []
+      playerEmailInput: ''
     }
   }
 
@@ -35,15 +30,14 @@ class AddPlayersInput extends Component {
   /**
    * Adds a new player to the list of players already being rendered.
    * @method addPlayer
-   * @param  {Object} event - The native DOM click event.
    */
-  addPlayer = (event) => {
-    this.setState(prevState => ({
-      // push a new element to the array of players
-      players: [...prevState.players, this.state.playerEmailInput],
-      // clear the input
-      playerEmailInput: ''
-    }))
+  addPlayer = () => {
+    // call back the passed prop function to send the parent componen the email
+    // input the user has typed in
+    this.props.onAddPlayer(this.state.playerEmailInput)
+
+    // clear the input
+    this.setState({ playerEmailInput: '' })
   }
 
   render () {
