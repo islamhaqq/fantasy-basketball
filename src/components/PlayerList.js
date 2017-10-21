@@ -10,7 +10,7 @@ import NoPlayers from './NoPlayers'
  * @param  {Object} players - A "roster" of players.
  */
 const PlayerList = ({ players }) => {
-  // handle cases where players is undefined or null
+  // indicate the user has not added any players yet, or has deleted them all.
   if (!players) {
     return <NoPlayers />
   }
