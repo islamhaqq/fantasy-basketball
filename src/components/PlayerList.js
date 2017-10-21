@@ -10,7 +10,7 @@ import PlayerCard from './PlayerCard'
  */
 const PlayerList = ({ players }) => {
   /**
-   * A PlayerCard for every playering, with its respective data passed as props.
+   * A PlayerCard for every player, with its respective data passed as props.
    * @type {Object}
    */
   const playerCards = Object.keys(players).map((player, index) => (
