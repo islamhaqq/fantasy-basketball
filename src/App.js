@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch'
 
 import PlayerList from './components/PlayerList'
+import AddPlayersInput from './containers/AddPlayersInput'
 
 import './App.css';
 
@@ -51,6 +52,7 @@ class App extends Component {
     return (
       <div className="App">
         <PlayerList players={this.state.players} />
+        <AddPlayersInput />
       </div>
     );
   }
