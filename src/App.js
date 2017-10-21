@@ -74,9 +74,15 @@ class App extends Component {
    * @method addPlayer
    */
   addPlayer = (playerEmailInput) => {
+    // make sure the email exists in store
+    if (!this.state.players[playerEmailInput]) return
+
+    // obtain player with specified email
+    const playerToAdd = this.state.players[playerEmailInput]
+
     this.setState(prevState => ({
       // push a new element to the array of players
-      addedPlayers: [...prevState.addedPlayers, playerEmailInput]
+      addedPlayers: [...prevState.addedPlayers, playerToAdd]
     }))
   }
 
