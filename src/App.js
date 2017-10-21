@@ -4,6 +4,7 @@ import fetch from 'isomorphic-fetch'
 import PlayerList from './components/PlayerList'
 import AddPlayersInput from './containers/AddPlayersInput'
 import NoPlayers from './components/NoPlayers'
+import Loading from './components/Loading'
 
 import './App.css';
 
@@ -27,7 +28,8 @@ class App extends Component {
        * their information as values.
        * @type {Object}
        */
-      players: null
+      players: null,
+      isLoading: true
     }
   }
 
@@ -41,7 +43,7 @@ class App extends Component {
     const players = await this.getPlayers(API_ENDPOINT)
 
     // update state with fetched players
-    this.setState({ players })
+    this.setState({ players, isLoading: false })
   }
 
   /**
@@ -59,6 +61,8 @@ class App extends Component {
   }
 
   render() {
+    if (this.state.isLoading) return <Loading />
+
     return (
       <div className="App">
         {/* handle cases where players is undefined or null */}
