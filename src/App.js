@@ -28,6 +28,11 @@ class App extends Component {
        * @type {Object}
        */
       players: null,
+      /**
+       * Whether the app is currently attempting to resolve promises to fetch
+       * data.
+       * @type {Boolean}
+       */
       isLoading: true
     }
   }
