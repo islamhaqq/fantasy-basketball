@@ -23,11 +23,16 @@ class App extends Component {
 
     this.state = {
       /**
-       * A "roster" object displaying all available players' emails as
-       * properties and their information as values.
+       * All the players
        * @type {Object}
        */
-      availablePlayers: null,
+      allPlayers: null,
+      /**
+       * A array displaying all available players' emails as properties and
+       * their information as values.
+       * @type {Array}
+       */
+      freeAgents: [],
       /**
        * Whether the app is currently attempting to resolve promises to fetch
        * data.
@@ -44,10 +49,10 @@ class App extends Component {
 
   /**
    * Gets all the players from the database.
-   * @method getAvailablePlayers
+   * @method getAllPlayers
    * @return {Promise} - A promise displaying the status and data of request.
    */
-  async getAvailablePlayers(requestURL) {
+  async getAllPlayers(requestURL) {
     try {
       const response = await fetch(requestURL)
       return response.json()
@@ -62,11 +67,21 @@ class App extends Component {
    * @return {Void}
    */
   async componentDidMount() {
-    // get available players
-    const availablePlayers = await this.getAvailablePlayers(API_ENDPOINT)
+    // get all the players
+    const allPlayers = await this.getAllPlayers(API_ENDPOINT)
+
+    // initially make all players free agents
+    // make data easier to work with (objects with email property)
+    const freeAgents = []
+    Object.keys(allPlayers).map((playerEmail) => {
+      let agentToAdd = allPlayers[playerEmail]
+      agentToAdd.email = playerEmail
+
+      freeAgents.push(agentToAdd)
+    })
 
     // update state with fetched available players
-    this.setState({ availablePlayers, isLoading: false })
+    this.setState({ allPlayers, freeAgents, isLoading: false })
   }
 
   /**
@@ -74,16 +89,27 @@ class App extends Component {
    * @method addPlayer
    */
   addPlayer = (playerEmailInput) => {
-    // make sure the email exists in store
-    if (!this.state.availablePlayers[playerEmailInput]) return
+    // make sure the email and agent is available for a sign up
+    if (!this.state.freeAgents.some((freeAgent) => {
+      return freeAgent.email === playerEmailInput
+    })) return
 
     // obtain player with specified email
-    const playerToAdd = this.state.availablePlayers[playerEmailInput]
+    const playerToAdd = this.state.freeAgents.find((freeAgent) => {
+      return freeAgent.email === playerEmailInput
+    })
 
-    this.setState(prevState => ({
-      // push a new element to the array of players
-      roster: [...prevState.roster, playerToAdd]
-    }))
+    this.setState(prevState => {
+      // remove free agent since he has now joined a franchise/club
+      const freeAgents = this.state.freeAgents
+      freeAgents.splice(freeAgents.indexOf(playerToAdd), 1)
+
+      return {
+        // push a new element to the array of players
+        roster: [...prevState.roster, playerToAdd],
+        freeAgents
+      }
+    })
   }
 
   render() {
