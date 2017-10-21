@@ -10,8 +10,8 @@ import PlayerProfilePhoto from './PlayerProfilePhoto'
  */
 const PlayerCard = ({ player }) => (
   <li>
-    <PlayerInfo fullName={player.firstName + player.lastName} />
     <PlayerProfilePhoto profilePhotoSrc={player.photo} />
+    <PlayerInfo fullName={player.firstName + player.lastName} />
   </li>
 )
 
