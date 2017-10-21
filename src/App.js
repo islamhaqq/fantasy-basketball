@@ -23,11 +23,11 @@ class App extends Component {
 
     this.state = {
       /**
-       * A "roster" object displaying all players' emails as properties and
-       * their information as values.
+       * A "roster" object displaying all available players' emails as
+       * properties and their information as values.
        * @type {Object}
        */
-      players: null,
+      availablePlayers: null,
       /**
        * Whether the app is currently attempting to resolve promises to fetch
        * data.
@@ -35,32 +35,19 @@ class App extends Component {
        */
       isLoading: true,
       /**
-       * The list of players that is being rendered in the main view.
+       * The list of players that are being rendered in the main view.
        * @type {Array}
        */
-      addedPlayers: []
+      roster: []
     }
   }
 
   /**
-   * Called during React's `mounted` lifecycle hook.
-   * @method componentDidMount
-   * @return {Promise}         [description]
-   */
-  async componentDidMount() {
-    // get players
-    const players = await this.getPlayers(API_ENDPOINT)
-
-    // update state with fetched players
-    this.setState({ players, isLoading: false })
-  }
-
-  /**
    * Gets all the players from the database.
-   * @method getPlayers
+   * @method getAvailablePlayers
    * @return {Promise} - A promise displaying the status and data of request.
    */
-  async getPlayers(requestURL) {
+  async getAvailablePlayers(requestURL) {
     try {
       const response = await fetch(requestURL)
       return response.json()
@@ -70,19 +57,32 @@ class App extends Component {
   }
 
   /**
-   * Adds a new player to the list of players already being rendered.
+   * Called during React's `mounted` lifecycle hook.
+   * @method componentDidMount
+   * @return {Void}
+   */
+  async componentDidMount() {
+    // get available players
+    const availablePlayers = await this.getAvailablePlayers(API_ENDPOINT)
+
+    // update state with fetched available players
+    this.setState({ availablePlayers, isLoading: false })
+  }
+
+  /**
+   * Adds a new player to the roster of players being rendered in a list.
    * @method addPlayer
    */
   addPlayer = (playerEmailInput) => {
     // make sure the email exists in store
-    if (!this.state.players[playerEmailInput]) return
+    if (!this.state.availablePlayers[playerEmailInput]) return
 
     // obtain player with specified email
-    const playerToAdd = this.state.players[playerEmailInput]
+    const playerToAdd = this.state.availablePlayers[playerEmailInput]
 
     this.setState(prevState => ({
       // push a new element to the array of players
-      addedPlayers: [...prevState.addedPlayers, playerToAdd]
+      roster: [...prevState.roster, playerToAdd]
     }))
   }
 
@@ -92,7 +92,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <PlayerList players={this.state.addedPlayers} />
+        <PlayerList players={this.state.roster} />
         <AddPlayersInput onAddPlayer={this.addPlayer} />
       </div>
     );
