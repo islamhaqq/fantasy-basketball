@@ -9,6 +9,10 @@ import PlayerProfilePhoto from './PlayerProfilePhoto'
  * @param  {Object} player - The player's information. i.e. email, name...
  */
 const PlayerCard = ({ player }) => {
+  /**
+   * The player's full name.
+   * @type {String}
+   */
   const fullName = `${player.firstName} ${player.lastName}`
 
   return (

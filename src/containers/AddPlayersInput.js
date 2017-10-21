@@ -9,7 +9,15 @@ class AddPlayersInput extends Component {
     super(props)
 
     this.state = {
+      /**
+       * What the user is typing into the input field to add players.
+       * @type {String}
+       */
       playerEmailInput: '',
+      /**
+       * The list of players that is being rendered in the main view.
+       * @type {Array}
+       */
       players: []
     }
   }
