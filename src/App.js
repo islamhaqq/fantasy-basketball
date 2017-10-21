@@ -23,7 +23,7 @@ class App extends Component {
 
     this.state = {
       /**
-       * All the players
+       * All the players.
        * @type {Object}
        */
       allPlayers: null,
@@ -71,10 +71,11 @@ class App extends Component {
     const allPlayers = await this.getAllPlayers(API_ENDPOINT)
 
     // initially make all players free agents
-    // make data easier to work with (objects with email property)
+    // make data easier to work with (array of objects with email property)
     const freeAgents = []
     Object.keys(allPlayers).map((playerEmail) => {
       let agentToAdd = allPlayers[playerEmail]
+      // add in an email property
       agentToAdd.email = playerEmail
 
       freeAgents.push(agentToAdd)
@@ -92,13 +93,14 @@ class App extends Component {
     // make sure the email and agent is available for a sign up
     if (!this.state.freeAgents.some((freeAgent) => {
       return freeAgent.email === playerEmailInput
-    })) return
+    })) return // TODO: maybe display error
 
     // obtain player with specified email
     const playerToAdd = this.state.freeAgents.find((freeAgent) => {
       return freeAgent.email === playerEmailInput
     })
 
+    // remove the player from free agents and add to the roster
     this.setState(prevState => {
       // remove free agent since he has now joined a franchise/club
       const freeAgents = this.state.freeAgents
