@@ -13,11 +13,20 @@ import './App.css';
  */
 const API_ENDPOINT = 'https://demo5689530.mockable.io/public/players'
 
+/**
+ * The root component. All other components are children.
+ * @type {Object}
+ */
 class App extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      /**
+       * A "roster" object displaying all players' emails as properties and
+       * their information as values.
+       * @type {Object}
+       */
       players: null
     }
   }
