@@ -8,15 +8,20 @@ import PlayerCard from './PlayerCard'
  * @method PlayerList
  * @param  {Object} players - A "roster" of players.
  */
-const PlayerList = ({ players }) => (
-  <ul>
-    {
-      // create a PlayerCard for every player, passing its respective data.
-      players ? Object.keys(players).map((player, index) => (
-        <PlayerCard key={index} player={players[player]} />
-      )) : <p>none</p>
-    }
-  </ul>
-)
+const PlayerList = ({ players }) => {
+  /**
+   * A PlayerCard for every playering, with its respective data passed as props.
+   * @type {Object}
+   */
+  const playerCards = players ? Object.keys(players).map((player, index) => (
+    <PlayerCard key={index} player={players[player]} /> )) : <p>none</p>
+
+  return (
+    // list out all the players and their cards
+    <ul>
+      {playerCards}
+    </ul>
+  )
+}
 
 export default PlayerList

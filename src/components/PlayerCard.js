@@ -8,11 +8,15 @@ import PlayerProfilePhoto from './PlayerProfilePhoto'
  * @method PlayerCard
  * @param  {Object} player - The player's information. i.e. email, name...
  */
-const PlayerCard = ({ player }) => (
-  <li>
-    <PlayerProfilePhoto profilePhotoSrc={player.photo} />
-    <PlayerInfo fullName={player.firstName + player.lastName} />
-  </li>
-)
+const PlayerCard = ({ player }) => {
+  const fullName = `${player.firstName} ${player.lastName}`
+
+  return (
+    <li>
+      <PlayerProfilePhoto profilePhotoSrc={player.photo} />
+      <PlayerInfo fullName={fullName} />
+    </li>
+  )
+}
 
 export default PlayerCard
