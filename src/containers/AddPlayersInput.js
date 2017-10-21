@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 
+/**
+ * A component that allows users to input player emails to add player cards.
+ * @type {Object}
+ */
 class AddPlayersInput extends Component {
   constructor(props) {
     super(props)
