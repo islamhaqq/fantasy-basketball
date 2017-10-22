@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import { hirePlayers } from '../actions/index'
 
 /**
  * A component that allows users to input player emails to add player cards.
@@ -72,4 +75,15 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(AddPlayersInput)
+/**
+ * Exposes actions as props for this container.
+ * @method mapDispatchToProps
+ * @param  {Object} dispatch - What connects the action results to the reducers.
+ * @return {Object} - Bound action creators ready for connection to component.
+ */
+function mapDispatchToProps(dispatch) {
+  // whenever hirePlayers() action is called, funnel result to reducers
+  return bindActionCreators({ hirePlayers }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddPlayersInput)
