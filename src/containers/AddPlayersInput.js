@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
+import { connect } from 'react-redux'
 
 /**
  * A component that allows users to input player emails to add player cards.
@@ -59,4 +60,16 @@ class AddPlayersInput extends Component {
   }
 }
 
-export default AddPlayersInput
+/**
+ * Converts the state of the container into usable props.
+ * @method mapStateToProps
+ * @param  {Object} state - The application state.
+ * @return {Object} - Prop definitions wired to app state.
+ */
+function mapStateToProps(state) {
+  return {
+    playerEmailInput: state.playerEmailInput
+  }
+}
+
+export default connect(mapStateToProps)(AddPlayersInput)
