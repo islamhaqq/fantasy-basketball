@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import TextField from 'material-ui/TextField'
 
 /**
  * A component that allows users to input player emails to add player cards.
@@ -43,8 +44,9 @@ class AddPlayersInput extends Component {
   render () {
     return (
       <div>
-        <input
+        <TextField
           value={this.state.playerEmailInput} onChange={this.updatePlayerEmailInput}
+          hintText="add a free agent to your roster"
         />
         <button onClick={this.addPlayer}>Add Player</button>
       </div>
