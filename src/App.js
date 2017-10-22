@@ -117,7 +117,11 @@ class App extends Component {
 
   render() {
     // indicate app is loading and resolving promises from asynchronous calls.
-    if (this.state.isLoading) return <Loading />
+    if (this.state.isLoading) return (
+      <MuiThemeProvider>
+        <Loading />
+      </MuiThemeProvider>
+    )
 
     return (
       <MuiThemeProvider>
