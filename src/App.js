@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 import PlayerList from './components/PlayerList'
 import AddPlayersInput from './containers/AddPlayersInput'
@@ -119,10 +120,12 @@ class App extends Component {
     if (this.state.isLoading) return <Loading />
 
     return (
-      <div className="App">
-        <PlayerList players={this.state.roster} />
-        <AddPlayersInput onAddPlayer={this.addPlayer} />
-      </div>
+      <MuiThemeProvider>
+        <div className="App">
+          <PlayerList players={this.state.roster} />
+          <AddPlayersInput onAddPlayer={this.addPlayer} />
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
