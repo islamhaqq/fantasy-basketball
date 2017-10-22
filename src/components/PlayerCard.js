@@ -1,7 +1,7 @@
 import React from 'react'
 
-import PlayerInfo from './PlayerInfo'
 import PlayerProfilePhoto from './PlayerProfilePhoto'
+import {Card, CardMedia, CardTitle} from 'material-ui/Card';
 
 /**
  * A presentational component that displays all of the player's info in a card.
@@ -17,8 +17,18 @@ const PlayerCard = ({ player }) => {
 
   return (
     <li>
-      <PlayerProfilePhoto profilePhotoSrc={player.photo} />
-      <PlayerInfo fullName={fullName} />
+      <Card>
+        <CardMedia
+          overlay={
+            <CardTitle title={fullName} subtitle={player.email} />
+          }
+        >
+          <PlayerProfilePhoto
+            profilePhotoSrc={player.photo}
+            fullName={fullName}
+          />
+        </CardMedia>
+      </Card>
     </li>
   )
 }

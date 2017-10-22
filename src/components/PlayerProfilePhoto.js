@@ -5,9 +5,9 @@ import React from 'react'
  * @method PlayerProfilePhoto
  * @param  {String} profilePhotoSrc - The url to the player's photo.
  */
-const PlayerProfilePhoto = ({ profilePhotoSrc }) => {
+const PlayerProfilePhoto = ({ profilePhotoSrc, fullName }) => {
   return (
-    <img src={profilePhotoSrc} />
+    <img src={profilePhotoSrc} alt={`${fullName}'s profile picture.`} />
   )
 }
 
