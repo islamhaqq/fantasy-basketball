@@ -9,8 +9,16 @@ import Roster from './roster'
  * @type {Object}
  */
 const rootReducer = combineReducers({
-  // add in imported reducers
+  // add in imported reducers as global state
+  /**
+   * The players available for hire.
+   * @type {Array}
+   */
   freeAgents: FreeAgents,
+  /**
+   * The players hired in the user's franchise.
+   * @type {Array}
+   */
   roster: Roster
 })
 
