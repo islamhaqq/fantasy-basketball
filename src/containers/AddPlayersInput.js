@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { hirePlayers } from '../actions/index'
+import { hirePlayer } from '../actions/index'
 
 /**
  * A component that allows users to input player emails to add player cards.
@@ -82,8 +82,8 @@ function mapStateToProps(state) {
  * @return {Object} - Bound action creators ready for connection to component.
  */
 function mapDispatchToProps(dispatch) {
-  // whenever hirePlayers() action is called, funnel result to reducers
-  return bindActionCreators({ hirePlayers }, dispatch)
+  // whenever hirePlayer() action is called, funnel result to reducers
+  return bindActionCreators({ hirePlayer }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddPlayersInput)
