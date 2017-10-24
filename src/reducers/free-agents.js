@@ -6,7 +6,7 @@
  * @param {Function} action - The tasks to perform to modify the state.
  * @return {Array} - All the players available for hire.
  */
-export default function (state, action) {
+export default function (state = null, action) {
   switch (action.type) {
     case 'HIRE_PLAYER':
       return action.payload
